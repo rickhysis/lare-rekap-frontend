@@ -1,25 +1,37 @@
 import React from 'react';
-import { Link, View, NotFoundBoundary, useLoadingRoute } from 'react-navi';
-import { MDXProvider } from '@mdx-js/tag';
+import { View, NotFoundBoundary, useLoadingRoute } from 'react-navi';
+import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Header from './layout/header'
+import Sidebar from './layout/sidebar'
 import './App.css';
 
-function App() {
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+  },
+  toolbar: theme.mixins.toolbar,
+});
+
+function App({ classes }) {
   let loadingRoute = useLoadingRoute()
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <nav className="App-nav">
-          <Link href='/' activeClassName='active' exact>
-            Home
-          </Link>
-          <Link href='/getting-started/' activeClassName='active'>
-            Getting Started
-          </Link>
-        </nav>
-      </header>
-
-      <main>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header />
+      <Sidebar />
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         <NotFoundBoundary render={renderNotFound}>
           <div
             // Only add the `active` class to this element while the
@@ -30,13 +42,7 @@ function App() {
               ${loadingRoute ? 'active' : ''}
             `}
           />
-          <MDXProvider components={{
-            // Use Navi's <Link> component to render links in
-            // Markdown files, ensuring navigation is handled by Navi.
-            a: Link,
-          }}>
             <View />
-          </MDXProvider>
         </NotFoundBoundary>
       </main>
     </div>
@@ -56,4 +62,4 @@ function renderNotFound() {
   )
 } 
 
-export default App;
+export default withStyles(styles)(App)
