@@ -2,7 +2,7 @@ import { mount, route } from 'navi'
 
 export default mount({
   '/': route({
-    title: "React Site",
+    title: "Lare Rekap",
     getView: () => import('./product.js')
   })
 })

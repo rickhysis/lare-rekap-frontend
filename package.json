@@ -12,7 +12,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-navi": "0.12.6",
-    "react-scripts-mdx": "2.1.4"
+    "react-scripts-mdx": "2.1.4",
+    "use-global-hook": "^0.1.7"
   },
   "scripts": {
     "start": "react-scripts start",

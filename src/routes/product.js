@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const secret_key = 'lxxx-mxxx-axxx-exxx-rxxx'
 
-function Product({ classes }) {
+function Product() {
   return (
     <MaterialTable
       title="Product"
@@ -16,7 +16,7 @@ function Product({ classes }) {
       ]}
       data={query =>
         new Promise((resolve, reject) => {
-          let url = 'http://apprekap.ws-skincare.com/api/v1/product/data?'
+          let url = 'https://apprekap.ws-skincare.com/api/v1/product/data?'
           url += 'barcode1=' + query.search
           url += '&namabarang=' + query.search
           url += '&pageSize=' + query.pageSize
@@ -33,7 +33,7 @@ function Product({ classes }) {
             headers: { 'Authorization':  `Basic ${secret_key}`},
           }).then(function (result) {
             const {page, data, total} = result.data
-            console.log(data)
+            
             resolve({
               data: data,
               page: Number(page) - 1,
